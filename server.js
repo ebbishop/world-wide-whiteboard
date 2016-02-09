@@ -13,12 +13,21 @@ server.on('request', app); //http server
 var io = socketio(server); //creates new connection for websockets
 
 io.on('connection', function(socket){
-  console.log('A client is connected!');
-  console.log(socket.id);
-    socket.on('disconnect', function(){
-      console.log('bye');
-    })
+
+  socket.broadcast.emit('message', 'Someone else just connected');
+
+  console.log('A client is connected!', socket.id);
+
+  socket.on('disconnect', function(){
+    console.log('bye');
+  });
+
+  socket.on('drawing', function(data){ //event name in string must match emitted event in app.js
+    // socket.emit(data);
+    socket.broadcast.emit('hi');
+  })
 });
+
 
 
 server.listen(1337, function () {

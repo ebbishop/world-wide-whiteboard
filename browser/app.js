@@ -3,8 +3,9 @@ socket.on('connect', function(){
   console.log('Persistent connection!');
 })
 
-// window.whiteboard.on('draw', function(){
-//   console.log('drew something');
-// })
+whiteboard.on('draw', function(data){ //doesn't have to be window.whiteboard because it's global?
+  console.log('data in browser:', data);
+  socket.emit('drawing', data);
+})
 
 

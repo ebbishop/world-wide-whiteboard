@@ -90,7 +90,7 @@ window.whiteboard = new window.EventEmitter();
         if (shouldBroadcast) {
             whiteboard.emit('draw', start, end, strokeColor);
         }
-        
+
     };
 
 })();
